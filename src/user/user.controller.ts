@@ -1,4 +1,4 @@
-import { Controller, Get , Req } from '@nestjs/common';
+import { Controller, Get , Param, Req } from '@nestjs/common';
 import { Request } from 'express';
 
 @Controller()
@@ -10,10 +10,16 @@ export class UserController {
     return request.url;
   }
 
-  @Get('users/:id')
-  findOne(@Req() request:Request): string {
-    return request.params.id;
+  @Get('users/:username')
+  findOne(@Param("username") username:string): string {
+    return username;
   }
+
+  @Get('id/:id')
+  findOneById(@Param("id") param:any): string {
+    return param;
+  }
+
 
 
 
